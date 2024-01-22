@@ -10,9 +10,9 @@
     "dts": "tsc --declaration --emitDeclarationOnly --jsx react-jsx -p tsconfig.json --noEmit false && tsc-alias",
     "build": "npm run clean && tsc && node esbuild.js && npm run dts"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["Authentication", "Session"],
+  "author": "Hery Nirintsoa",
+  "license": "MIT",
   "devDependencies": {
     "@types/react": "^18.2.48",
     "esbuild": "^0.19.11",
@@ -23,5 +23,9 @@
   },
   "peerDependencies": {
     "react": "^18.2.0"
+  },
+  "homepage": "https://github.com/heryTz/react-auth#readme",
+  "bugs": {
+    "url": "https://github.com/heryTz/react-auth/issues"
   }
 }
