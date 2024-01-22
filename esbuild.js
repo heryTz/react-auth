@@ -1,8 +1,10 @@
-import { buildSync } from "esbuild"
+import { build } from "esbuild";
+import { nodeExternalsPlugin } from "esbuild-node-externals";
 
-buildSync({
-  entryPoints: ['src/index.ts'],
+build({
+  entryPoints: ["src/index.ts"],
   bundle: true,
-  format: 'esm',
-  outfile: 'dist/uploader.js'
-})
+  format: "esm",
+  outfile: "dist/index.js",
+  plugins: [nodeExternalsPlugin()],
+}).then(() => {}, console.error);
