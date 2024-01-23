@@ -3,8 +3,9 @@ import {
   AuthenticationStatus,
   ReactAuthContext,
   ReactAuthContextValue,
-  ReactAuthSession,
 } from "./react-auth-context";
+import { ReactAuthException } from ".";
+import { AuthServiceContract, AuthStorageContract } from "./contract";
 
 type ReactAuthProviderProps = PropsWithChildren<
   Pick<ReactAuthContextValue, "service" | "storage">
@@ -15,7 +16,19 @@ export function ReactAuthProvider({
   service,
   storage,
 }: ReactAuthProviderProps) {
-  const [session, setSession] = useState<ReactAuthSession>(undefined);
+  if (service instanceof AuthServiceContract === false) {
+    throw new ReactAuthException(
+      `service should extends "AuthServiceContract"`
+    );
+  }
+  if (storage instanceof AuthStorageContract === false) {
+    throw new ReactAuthException(
+      `storage should extends "AuthServiceContract"`
+    );
+  }
+
+  const [session, setSession] =
+    useState<ReactAuthContextValue["session"]>(undefined);
 
   useEffect(() => {
     storage

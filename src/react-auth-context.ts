@@ -1,25 +1,25 @@
 import { createContext, useContext } from "react";
-import { AuthServiceInterface } from "./auth-service-interface";
-import { AuthStorageInterface } from "./auth-storage-interface";
+import { AuthServiceContract } from "./contract/auth-service-contract";
+import { AuthStorageContract } from "./contract/auth-storage-contract";
 
 export type AuthenticationStatus =
   | "loading"
   | "unauthenticated"
   | "authenticated";
 
-export type ReactAuthSession = {} | null | undefined;
+export type ReactAuthSession = {};
 
 export type ReactAuthContextValue = {
-  service: AuthServiceInterface;
-  storage: AuthStorageInterface;
-  session: ReactAuthSession;
+  service: AuthServiceContract;
+  storage: AuthStorageContract;
+  session: ReactAuthSession | null | undefined;
   status: AuthenticationStatus;
   signin: () => Promise<void>;
   signout: () => Promise<void>;
 };
 
 export const ReactAuthContext = createContext<ReactAuthContextValue | null>(
-  null,
+  null
 );
 
 export function useReactAuth() {
